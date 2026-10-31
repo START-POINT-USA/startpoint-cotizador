@@ -439,7 +439,7 @@
 <script>
 // ================= CONFIGURACIÓN =================
 const CRM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxw30Q4FLNKwnzW1KAPXxthT9cafRjYP-qIPRLxWDFqLgA-becUPOZzr5hMhXeT95PDiQ/exec';
-const CRM_TOKEN = 'PEGAR_EL_MISMO_TOKEN_DEL_SCRIPT';   // el mismo TOKEN de Apps Script (CFG)
+const CRM_TOKEN = 'sp-Vw1JQeXUZCnpgsrDzIbMkliRvqjEmNwkY7tWPXUm';   // el mismo TOKEN de Apps Script (CFG)
 
 // ================= TEXTOS (ES / EN) =================
 const X = (es,en)=>({es,en});
@@ -592,10 +592,10 @@ function renderPayment(){
 }
 function renderAll(){
   applyStatic();
-  $('commonBox').classList.toggle('active', st.common);
+  $('commonBox').classList.toggle('checked', st.common);
   renderPaths(); renderStages(); renderPayment();
 }
-$('commonBox').onclick=()=>{ st.common=!st.common; $('commonBox').classList.toggle('active', st.common); };
+$('commonBox').onclick=()=>{ st.common=!st.common; $('commonBox').classList.toggle('checked', st.common); };
 $('langES').onclick=()=>{ L='es'; renderAll(); };
 $('langEN').onclick=()=>{ L='en'; renderAll(); };
 
@@ -621,7 +621,7 @@ $('clientSubmitBtn').onclick = async ()=>{
     if(!j.ok) throw new Error(j.error||'error');
     $('formArea').style.display='none'; $('doneBox').style.display='block'; window.scrollTo({top:0,behavior:'smooth'});
   }catch(e){
-    alert(t(UI.fail)); btn.disabled=false; btn.textContent=t(UI.send);
+    alert(t(UI.fail)+' ['+(e&&e.message?e.message:'error')+']'); btn.disabled=false; btn.textContent=t(UI.send);
   }
 };
 
